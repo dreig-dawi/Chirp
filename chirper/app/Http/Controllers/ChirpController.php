@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 // Added
-use Illuminate\Http\Response; 
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -19,7 +19,9 @@ class ChirpController extends Controller
     public function index(): View
     {
         //Added
-        return view('chirps.index');
+        return view('chirps.index', [
+            'chirps' => Chirp::with('user')->latest()->get(),
+        ]);
     }
 
     /**
